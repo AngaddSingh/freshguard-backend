@@ -10,7 +10,7 @@ Render deployment:
     Start command: uvicorn main:app --host 0.0.0.0 --port $PORT
 """
 
-
+from __future__ import annotations
 from fastapi import FastAPI, HTTPException, Depends, status, Request
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi.middleware.cors import CORSMiddleware
