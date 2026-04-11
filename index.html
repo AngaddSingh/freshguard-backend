@@ -38,13 +38,9 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden;}
-
-/* ── SCROLLBAR ── */
 ::-webkit-scrollbar{width:5px;height:5px;}
 ::-webkit-scrollbar-track{background:var(--bg2);}
 ::-webkit-scrollbar-thumb{background:var(--card3);border-radius:3px;}
-
-/* ── ANIMATIONS ── */
 @keyframes card-in{from{opacity:0;transform:translateY(20px) scale(.98);}to{opacity:1;transform:none;}}
 @keyframes fade-in{from{opacity:0;}to{opacity:1;}}
 @keyframes pulse-glow{0%,100%{transform:scale(1);opacity:.7;}50%{transform:scale(1.1);opacity:1;}}
@@ -57,64 +53,44 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 @keyframes bar-grow{from{transform:scaleY(0);}to{transform:scaleY(1);}}
 @keyframes page-enter{from{opacity:0;transform:translateX(20px);}to{opacity:1;transform:none;}}
 
-/* ══════════════════════════════════
-   LOGIN / SIGNUP PAGE
-══════════════════════════════════ */
 #login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;}
 .login-bg-glow{position:fixed;width:700px;height:700px;background:radial-gradient(circle,#3dffa015 0%,transparent 70%);top:-200px;left:-200px;pointer-events:none;animation:pulse-glow 6s ease-in-out infinite;}
 .login-bg-glow2{position:fixed;width:500px;height:500px;background:radial-gradient(circle,#3dffa008 0%,transparent 70%);bottom:-100px;right:-100px;pointer-events:none;animation:pulse-glow 8s ease-in-out infinite reverse;}
 .login-grid-lines{position:fixed;inset:0;pointer-events:none;opacity:.04;background-image:linear-gradient(var(--green) 1px,transparent 1px),linear-gradient(90deg,var(--green) 1px,transparent 1px);background-size:80px 80px;}
-
 .login-card{background:var(--card);border:1px solid var(--border2);border-radius:28px;padding:48px 40px 40px;width:100%;max-width:440px;box-shadow:var(--shadow),0 0 0 1px #3dffa008;position:relative;animation:card-in .6s cubic-bezier(.22,1,.36,1) both;}
 .login-card::before{content:'';position:absolute;inset:0;border-radius:28px;background:linear-gradient(135deg,#3dffa006,transparent 60%);pointer-events:none;}
-
 .login-logo{display:flex;flex-direction:column;align-items:center;margin-bottom:28px;}
 .logo-icon{width:56px;height:56px;background:linear-gradient(135deg,#3dffa0,#1ac97a);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;box-shadow:0 0 32px #3dffa050;animation:logo-pulse 3s ease-in-out infinite;}
 .logo-icon svg{width:28px;height:28px;fill:#0b1a14;}
 .login-logo h1{font-family:'Syne',sans-serif;font-weight:800;font-size:26px;letter-spacing:-.5px;}
 .login-logo span{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--text3);text-transform:uppercase;margin-top:2px;}
-
-/* Auth tabs */
 .auth-tabs{display:flex;gap:0;background:var(--card2);border:1px solid var(--border2);border-radius:10px;padding:4px;margin-bottom:24px;}
 .auth-tab{flex:1;padding:9px;border-radius:7px;text-align:center;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;cursor:pointer;color:var(--text3);transition:all .2s;}
 .auth-tab.active{background:var(--green);color:#051a0f;}
-
 .field-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;margin-bottom:8px;}
 .input-wrap{position:relative;margin-bottom:16px;}
 .input-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--text3);display:flex;align-items:center;}
 .input-wrap input{width:100%;background:var(--input-bg);border:1px solid var(--border2);border-radius:12px;padding:14px 16px 14px 44px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;}
 .input-wrap input::placeholder{color:var(--text3);}
 .input-wrap input:focus{border-color:var(--green);box-shadow:0 0 0 3px var(--green-dim);}
-
 .btn-auth{width:100%;padding:15px;background:linear-gradient(135deg,#3dffa0,#1ac97a);border:none;border-radius:12px;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:#051a0f;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .15s,box-shadow .15s,opacity .15s;box-shadow:0 8px 32px #3dffa040;margin-top:8px;position:relative;overflow:hidden;}
 .btn-auth:hover{transform:translateY(-2px);box-shadow:0 12px 40px #3dffa060;}
 .btn-auth:active{transform:translateY(0);}
 .btn-auth:disabled{opacity:.6;cursor:not-allowed;transform:none;}
-
 .error-msg{background:var(--red-dim);border:1px solid var(--red);border-radius:8px;padding:10px 14px;margin-top:12px;font-size:13px;color:var(--red);display:none;}
 .success-msg{background:var(--green-dim);border:1px solid var(--green);border-radius:8px;padding:10px 14px;margin-top:12px;font-size:13px;color:var(--green);display:none;}
-
 .biometric-badge{position:fixed;bottom:24px;left:24px;display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:8px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--text2);animation:badge-in 1s .8s both;}
 .biometric-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 2s ease-in-out infinite;}
 .login-copyright{position:fixed;bottom:24px;width:100%;text-align:center;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;}
-
-/* demo mode banner */
 .demo-banner{background:var(--yellow-dim);border:1px solid var(--yellow);border-radius:8px;padding:8px 12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--yellow);text-align:center;display:none;margin-bottom:12px;}
-
-/* ══════════════════════════════════
-   APP SHELL
-══════════════════════════════════ */
 #app{display:none;min-height:100vh;position:relative;z-index:1;}
 .layout{display:flex;min-height:100vh;}
-
-/* SIDEBAR */
 .sidebar{width:260px;flex-shrink:0;background:var(--card);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:28px 20px;position:sticky;top:0;height:100vh;}
 .sidebar-logo{display:flex;align-items:center;gap:12px;margin-bottom:40px;padding:0 4px;}
 .sidebar-logo .logo-sm{width:36px;height:36px;background:linear-gradient(135deg,#3dffa0,#1ac97a);border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px #3dffa040;flex-shrink:0;}
 .sidebar-logo .logo-sm svg{width:18px;height:18px;fill:#051a0f;}
 .sidebar-logo div h2{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;line-height:1;}
 .sidebar-logo div p{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;margin-top:2px;}
-
 .nav-section-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;padding:0 14px;margin:16px 0 6px;}
 .nav{flex:1;display:flex;flex-direction:column;gap:2px;}
 .nav-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;font-size:14px;color:var(--text2);cursor:pointer;transition:background .15s,color .15s;user-select:none;}
@@ -122,10 +98,8 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .nav-item.active{background:var(--green-dim);color:var(--green);}
 .nav-item svg{width:16px;height:16px;flex-shrink:0;}
 .nav-badge{margin-left:auto;background:var(--red);color:#fff;font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 6px;border-radius:10px;font-weight:700;}
-
 .add-sensor-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#3dffa0,#1ac97a);border:none;border-radius:12px;padding:13px;width:100%;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:#051a0f;cursor:pointer;margin-top:20px;transition:box-shadow .2s,transform .15s;box-shadow:0 4px 20px #3dffa030;}
 .add-sensor-btn:hover{transform:translateY(-1px);box-shadow:0 8px 28px #3dffa050;}
-
 .sidebar-user{display:flex;align-items:center;gap:10px;padding:12px;border-radius:10px;border:1px solid var(--border);margin-top:12px;cursor:pointer;transition:border-color .2s;}
 .sidebar-user:hover{border-color:var(--green);}
 .avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#1e3a2f,#2d5a45);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--green);flex-shrink:0;}
@@ -133,8 +107,6 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .sidebar-user div span{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--text3);}
 .logout-btn{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text3);cursor:pointer;margin-top:4px;padding:2px 0;transition:color .2s;}
 .logout-btn:hover{color:var(--red);}
-
-/* MAIN */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;border-bottom:1px solid var(--border);background:var(--card);position:sticky;top:0;z-index:10;backdrop-filter:blur(12px);}
 .status-pill{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;}
@@ -149,29 +121,19 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .icon-btn{width:36px;height:36px;border-radius:8px;background:var(--card2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text2);transition:border-color .2s,color .2s;position:relative;}
 .icon-btn:hover{border-color:var(--green);color:var(--green);}
 .notif-dot{position:absolute;top:6px;right:6px;width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 6px var(--red);}
-
-/* DEMO MODE TOPBAR BADGE */
 .demo-badge-topbar{background:var(--yellow-dim);border:1px solid var(--yellow);border-radius:6px;padding:3px 10px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--yellow);display:none;}
-
-/* PAGE CONTAINER */
 .page-content{display:none;flex:1;overflow-y:auto;}
 .page-content.active{display:block;animation:page-enter .35s cubic-bezier(.22,1,.36,1);}
 .content{padding:28px;}
-
-/* HEADER */
 .content-header{margin-bottom:28px;}
 .content-header h1{font-family:'Syne',sans-serif;font-weight:800;font-size:36px;line-height:1;letter-spacing:-1px;}
 .content-header p{color:var(--text2);font-size:14px;margin-top:6px;}
 .header-row{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;}
 .active-badge{display:inline-flex;align-items:center;gap:6px;background:var(--card2);border:1px solid var(--border2);border-radius:8px;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--text2);}
 .active-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:blink 2s ease-in-out infinite;}
-
-/* CARDS */
 .card{background:var(--card);border:1px solid var(--border2);border-radius:var(--radius);padding:24px;position:relative;overflow:hidden;}
 .card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#3dffa004,transparent);pointer-events:none;}
 .card-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;margin-bottom:20px;}
-
-/* STAT CARDS */
 .stat-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px;}
 .stat-card{background:var(--card);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:20px;position:relative;overflow:hidden;transition:border-color .2s,transform .2s;animation:card-in .5s cubic-bezier(.22,1,.36,1) both;}
 .stat-card:hover{border-color:var(--border3);transform:translateY(-2px);}
@@ -179,12 +141,8 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .stat-val{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:28px;line-height:1;margin-bottom:4px;}
 .stat-label{font-size:12px;color:var(--text2);}
 .stat-change{font-size:11px;margin-top:8px;display:flex;align-items:center;gap:4px;}
-
-/* DASHBOARD GRID */
 .grid-top{display:grid;grid-template-columns:1fr 1.4fr;gap:16px;margin-bottom:16px;}
 .grid-bottom{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-bottom:24px;}
-
-/* GAS GAUGE */
 .gauge-wrap{display:flex;justify-content:center;padding:8px 0 4px;}
 .gauge-svg{width:160px;height:160px;}
 .gauge-track{fill:none;stroke:var(--card2);stroke-width:10;}
@@ -192,8 +150,6 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .gauge-text{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;fill:var(--text);}
 .gauge-sub{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;fill:var(--text3);}
 .attention-badge{display:flex;align-items:center;gap:6px;margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;}
-
-/* TEMP */
 .temp-value{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:64px;line-height:1;letter-spacing:-3px;margin:4px 0 16px;}
 .temp-value span{font-size:28px;letter-spacing:0;color:var(--text2);}
 .time-tabs{display:flex;gap:4px;}
@@ -203,16 +159,12 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .bar{flex:1;border-radius:4px 4px 0 0;background:var(--card2);transition:height .6s cubic-bezier(.22,1,.36,1),background .3s;position:relative;transform-origin:bottom;animation:bar-grow .8s cubic-bezier(.22,1,.36,1) both;}
 .bar.active{background:var(--green);box-shadow:0 0 12px #3dffa040;}
 .bar.high{background:var(--red);}
-
-/* HUMIDITY */
 .humidity-value{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:72px;line-height:1;letter-spacing:-4px;margin:4px 0;}
 .humidity-value .pct{font-size:30px;letter-spacing:0;}
 .humidity-delta{color:var(--green);font-size:13px;font-weight:500;display:flex;align-items:center;gap:4px;margin-bottom:16px;}
 .humidity-bar-bg{height:6px;background:var(--card2);border-radius:3px;overflow:hidden;}
 .humidity-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#1ac97a,#3dffa0);box-shadow:0 0 10px #3dffa060;transition:width 1.2s cubic-bezier(.22,1,.36,1);}
 .humidity-icon{position:absolute;right:24px;top:24px;width:36px;height:36px;border-radius:10px;background:var(--green-dim);display:flex;align-items:center;justify-content:center;color:var(--green);}
-
-/* EQUIPMENT */
 .eq-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);}
 .eq-item:last-child{border-bottom:none;}
 .eq-left{display:flex;align-items:center;gap:10px;}
@@ -225,8 +177,6 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .tag-blue{background:#5b9cf615;color:#5b9cf6;border:1px solid #5b9cf630;}
 .diagnostics-link{display:flex;align-items:center;gap:6px;margin-top:12px;color:var(--green);font-size:14px;font-weight:500;cursor:pointer;transition:gap .2s;}
 .diagnostics-link:hover{gap:10px;}
-
-/* ALERTS */
 .alerts-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
 .alerts-header h2{font-family:'Syne',sans-serif;font-weight:700;font-size:20px;}
 .alerts-header a{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text3);text-decoration:none;transition:color .2s;cursor:pointer;}
@@ -235,20 +185,10 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .alert-card{background:var(--card);border-radius:14px;padding:16px;border:1px solid var(--border2);transition:border-color .2s;}
 .alert-time{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--text3);margin-bottom:6px;}
 .alert-msg{font-size:13px;color:var(--text2);line-height:1.5;}
-
-/* REFRESH */
 .refresh-ring{position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--text3);cursor:pointer;transition:border-color .2s,color .2s;z-index:100;}
 .refresh-ring:hover{border-color:var(--green);color:var(--green);}
 .refresh-ring.spinning svg{animation:spin 1s linear infinite;}
 .last-updated{position:fixed;bottom:28px;right:80px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--text3);z-index:100;}
-
-/* NO DATA STATE */
-.no-data-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;color:var(--text3);}
-.no-data-state p{font-size:14px;margin-top:8px;}
-
-/* ══════════════════════════════════
-   INVENTORY PAGE
-══════════════════════════════════ */
 .inv-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;}
 .inv-filters{display:flex;gap:8px;flex-wrap:wrap;}
 .filter-btn{background:var(--card2);border:1px solid var(--border2);border-radius:8px;padding:6px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text3);cursor:pointer;transition:all .2s;text-transform:uppercase;}
@@ -257,7 +197,6 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 24px #3dffa050;}
 .btn-secondary{display:flex;align-items:center;gap:6px;background:var(--card2);border:1px solid var(--border2);border-radius:10px;padding:10px 18px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text2);cursor:pointer;transition:border-color .2s,color .2s;}
 .btn-secondary:hover{border-color:var(--green);color:var(--green);}
-
 .inv-table{width:100%;border-collapse:collapse;}
 .inv-table th{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;padding:10px 16px;text-align:left;border-bottom:1px solid var(--border);}
 .inv-table td{padding:14px 16px;border-bottom:1px solid var(--border);font-size:13px;color:var(--text2);}
@@ -272,10 +211,6 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .progress-green{background:linear-gradient(90deg,#1ac97a,#3dffa0);}
 .progress-yellow{background:linear-gradient(90deg,#c9a21a,#f5c542);}
 .progress-red{background:linear-gradient(90deg,#c93030,#ff5555);}
-
-/* ══════════════════════════════════
-   ANALYTICS PAGE
-══════════════════════════════════ */
 .analytics-kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;}
 .kpi-card{background:var(--card);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:20px;position:relative;overflow:hidden;animation:card-in .5s cubic-bezier(.22,1,.36,1) both;}
 .kpi-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;margin-bottom:10px;}
@@ -283,14 +218,12 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .kpi-trend{font-size:12px;display:flex;align-items:center;gap:4px;}
 .trend-up{color:var(--green);}
 .trend-down{color:var(--red);}
-
 .chart-card{background:var(--card);border:1px solid var(--border2);border-radius:var(--radius);padding:24px;margin-bottom:16px;}
 .chart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
 .chart-title{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;}
 .chart-area{height:200px;position:relative;display:flex;align-items:flex-end;}
 .mini-sparkline{height:60px;display:flex;align-items:flex-end;gap:3px;margin-top:12px;}
 .spark-bar{flex:1;border-radius:2px 2px 0 0;min-height:4px;transition:height .6s;}
-
 .timeline-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .event-list{display:flex;flex-direction:column;gap:0;}
 .event-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);}
@@ -298,10 +231,6 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .event-dot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0;}
 .event-time{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);}
 .event-desc{font-size:13px;color:var(--text2);line-height:1.5;}
-
-/* ══════════════════════════════════
-   SETTINGS PAGE
-══════════════════════════════════ */
 .settings-grid{display:grid;grid-template-columns:240px 1fr;gap:24px;}
 .settings-nav{display:flex;flex-direction:column;gap:2px;}
 .settings-nav-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;font-size:13px;color:var(--text2);cursor:pointer;transition:all .15s;}
@@ -316,22 +245,15 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .settings-row:last-child{border-bottom:none;padding-bottom:0;}
 .settings-row-label{font-size:14px;}
 .settings-row-desc{font-size:12px;color:var(--text3);margin-top:2px;}
-
-/* TOGGLE */
 .toggle{width:42px;height:24px;background:var(--card3);border-radius:12px;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;}
 .toggle.on{background:var(--green);}
 .toggle::after{content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:3px;left:3px;transition:left .2s;}
 .toggle.on::after{left:21px;}
-
 .settings-select{background:var(--card2);border:1px solid var(--border2);border-radius:8px;padding:8px 12px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);outline:none;cursor:pointer;}
 .settings-input{background:var(--input-bg);border:1px solid var(--border2);border-radius:8px;padding:8px 12px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);outline:none;}
 .settings-input:focus{border-color:var(--green);}
-
 .profile-avatar-lg{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#1e3a2f,#2d5a45);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:28px;color:var(--green);margin-bottom:16px;box-shadow:0 0 32px #3dffa030;position:relative;}
 .avatar-ring{position:absolute;inset:-3px;border-radius:50%;border:2px solid var(--green);opacity:.4;animation:float 3s ease-in-out infinite;}
-@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
-
-/* MODAL */
 .modal-overlay{position:fixed;inset:0;background:#000000a0;backdrop-filter:blur(4px);z-index:1000;display:none;align-items:center;justify-content:center;}
 .modal-overlay.open{display:flex;animation:fade-in .2s;}
 .modal{background:var(--card);border:1px solid var(--border2);border-radius:24px;padding:32px;width:100%;max-width:480px;box-shadow:var(--shadow);animation:card-in .3s cubic-bezier(.22,1,.36,1);}
@@ -343,8 +265,6 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .form-group label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--text3);text-transform:uppercase;display:block;margin-bottom:8px;}
 .form-group input,.form-group select{width:100%;background:var(--input-bg);border:1px solid var(--border2);border-radius:10px;padding:12px 16px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s;}
 .form-group input:focus,.form-group select:focus{border-color:var(--green);}
-
-/* NOTIFICATION DROPDOWN */
 .notif-dropdown{position:absolute;top:calc(100% + 8px);right:0;width:320px;background:var(--card);border:1px solid var(--border2);border-radius:16px;box-shadow:var(--shadow);z-index:200;display:none;overflow:hidden;}
 .notif-dropdown.open{display:block;animation:card-in .2s cubic-bezier(.22,1,.36,1);}
 .notif-header{padding:16px 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
@@ -356,14 +276,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 .notif-item-title{font-size:13px;font-weight:500;margin-bottom:2px;}
 .notif-item-time{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);}
 .notif-item-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;}
-
-/* STATUS COLORS */
-.safe{color:var(--green);}
-.warning{color:var(--yellow);}
-.spoiled{color:var(--red);}
-.info{color:var(--blue);}
-
-/* MOBILE */
+.safe{color:var(--green);}.warning{color:var(--yellow);}.spoiled{color:var(--red);}.info{color:var(--blue);}
 @media(max-width:900px){
   .sidebar{display:none;}
   .grid-top,.grid-bottom{grid-template-columns:1fr;}
@@ -378,7 +291,6 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
   .humidity-value{font-size:52px;}
   .content-header h1{font-size:28px;}
 }
-
 [data-tip]{position:relative;}
 [data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--card3);border:1px solid var(--border2);border-radius:6px;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--text);white-space:nowrap;z-index:100;pointer-events:none;}
 </style>
@@ -390,7 +302,6 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
   <div class="login-bg-glow"></div>
   <div class="login-bg-glow2"></div>
   <div class="login-grid-lines"></div>
-
   <div class="login-card">
     <div class="login-logo">
       <div class="logo-icon">
@@ -399,22 +310,17 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
       <h1>FreshGuard</h1>
       <span>The Obsidian Pulse</span>
     </div>
-
-    <!-- Tabs -->
     <div class="auth-tabs">
       <div class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Sign In</div>
       <div class="auth-tab" id="tab-signup" onclick="switchAuthTab('signup')">Create Account</div>
     </div>
-
-    <!-- Shared fields -->
-    <div class="field-label">Username / Email</div>
+    <div class="field-label">Username</div>
     <div class="input-wrap">
       <div class="input-icon">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       </div>
-      <input type="text" id="login-username" placeholder="agent@freshguard.io" autocomplete="off"/>
+      <input type="text" id="login-username" placeholder="your_username" autocomplete="off"/>
     </div>
-
     <div class="field-label">Password</div>
     <div class="input-wrap">
       <div class="input-icon">
@@ -422,8 +328,6 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
       </div>
       <input type="password" id="login-password" placeholder="••••••••••••" autocomplete="off"/>
     </div>
-
-    <!-- Confirm password — signup only -->
     <div id="confirm-wrap" style="display:none;">
       <div class="field-label">Confirm Password</div>
       <div class="input-wrap">
@@ -433,88 +337,60 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
         <input type="password" id="login-confirm" placeholder="Repeat password"/>
       </div>
     </div>
-
-    <div class="demo-banner" id="demo-banner">
-      ⚡ DEMO MODE — backend offline. Using simulated data.
-    </div>
-
+    <div class="demo-banner" id="demo-banner">⚡ DEMO MODE — backend offline. Using simulated data.</div>
     <button class="btn-auth" id="login-btn" onclick="doAuth()">
       <span id="btn-label">Authorize Access</span>
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </button>
-
     <div class="error-msg" id="error-msg"></div>
     <div class="success-msg" id="success-msg"></div>
   </div>
-
-  <div class="biometric-badge">
-    <div class="biometric-dot"></div>
-    Biometric Systems Ready
-  </div>
-  <div class="login-copyright">© 2025 FreshGuard Dynamics · Secure Environment V.2.04</div>
+  <div class="biometric-badge"><div class="biometric-dot"></div>Biometric Systems Ready</div>
+  <div class="login-copyright">© 2026 FreshGuard Dynamics · Secure Environment V.2.04</div>
 </div>
 
 <!-- ═══════════════ APP ═══════════════ -->
 <div id="app">
   <div class="layout">
-
-    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar-logo">
         <div class="logo-sm">
           <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l6 2.67V11c0 3.77-2.53 7.27-6 8.35C8.53 18.27 6 14.77 6 11V7.67L12 5z"/></svg>
         </div>
-        <div>
-          <h2>FreshGuard</h2>
-          <p>The Obsidian Pulse</p>
-        </div>
+        <div><h2>FreshGuard</h2><p>The Obsidian Pulse</p></div>
       </div>
-
       <nav class="nav">
         <div class="nav-section-label">Main</div>
         <div class="nav-item active" onclick="showPage('dashboard')">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          Dashboard
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard
         </div>
         <div class="nav-item" onclick="showPage('inventory')">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
-          Inventory
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>Inventory
         </div>
         <div class="nav-item" onclick="showPage('analytics')">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          Analytics
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Analytics
           <span class="nav-badge" style="background:var(--blue);">NEW</span>
         </div>
         <div class="nav-section-label">System</div>
         <div class="nav-item" onclick="showPage('settings')">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-          Settings
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Settings
         </div>
         <div class="nav-item" onclick="showModal('sensorModal')">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-          Add Sensor
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Add Sensor
         </div>
       </nav>
-
       <button class="add-sensor-btn" onclick="showModal('sensorModal')">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Add Sensor
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Sensor
       </button>
-
       <div class="sidebar-user" onclick="showPage('settings')">
         <div class="avatar" id="sidebar-avatar">?</div>
-        <div>
-          <p id="sidebar-name">Loading…</p>
-          <span id="sidebar-role">System Admin</span>
-        </div>
+        <div><p id="sidebar-name">Loading…</p><span id="sidebar-role">System Admin</span></div>
       </div>
       <div class="logout-btn" onclick="logout()">
-        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-        Sign Out
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out
       </div>
     </aside>
 
-    <!-- MAIN -->
     <div class="main">
       <div class="topbar">
         <div class="status-pill">
@@ -536,18 +412,8 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
             <div class="notif-dropdown" id="notif-dropdown">
               <div class="notif-header"><span class="notif-title">Alerts</span><span class="notif-clear" onclick="clearNotifs(event)">CLEAR ALL</span></div>
               <div id="notif-list">
-                <div class="notif-item">
-                  <div style="display:flex;align-items:flex-start;gap:10px;">
-                    <div class="notif-item-dot" style="background:var(--yellow);margin-top:5px;"></div>
-                    <div><div class="notif-item-title">Cooling pump degraded</div><div class="notif-item-time">2 min ago</div></div>
-                  </div>
-                </div>
-                <div class="notif-item">
-                  <div style="display:flex;align-items:flex-start;gap:10px;">
-                    <div class="notif-item-dot" style="background:var(--red);margin-top:5px;"></div>
-                    <div><div class="notif-item-title">CO₂ spike — Zone B</div><div class="notif-item-time">8 min ago</div></div>
-                  </div>
-                </div>
+                <div class="notif-item"><div style="display:flex;align-items:flex-start;gap:10px;"><div class="notif-item-dot" style="background:var(--yellow);margin-top:5px;"></div><div><div class="notif-item-title">Cooling pump degraded</div><div class="notif-item-time">2 min ago</div></div></div></div>
+                <div class="notif-item"><div style="display:flex;align-items:flex-start;gap:10px;"><div class="notif-item-dot" style="background:var(--red);margin-top:5px;"></div><div><div class="notif-item-title">CO₂ spike — Zone B</div><div class="notif-item-time">8 min ago</div></div></div></div>
               </div>
             </div>
           </div>
@@ -557,19 +423,15 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
         </div>
       </div>
 
-      <!-- ─── DASHBOARD PAGE ─── -->
+      <!-- DASHBOARD -->
       <div class="page-content active" id="page-dashboard">
         <div class="content">
           <div class="content-header">
             <div class="header-row">
-              <div>
-                <h1>Live Monitoring</h1>
-                <p>Storage Unit #4 — Cold Room Alpha · ESP32 + MQ135 + DHT11</p>
-              </div>
+              <div><h1>Live Monitoring</h1><p>Storage Unit #4 — Cold Room Alpha · ESP32 + MQ135 + DHT11</p></div>
               <div class="active-badge"><div class="dot"></div>ACTIVE 24/7</div>
             </div>
           </div>
-
           <div class="stat-cards">
             <div class="stat-card" style="animation-delay:.05s">
               <div class="stat-icon" style="background:#3dffa015;"><svg width="18" height="18" fill="none" stroke="var(--green)" stroke-width="2" viewBox="0 0 24 24"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg></div>
@@ -596,7 +458,6 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
               <div class="stat-change trend-up">↑ Healthy</div>
             </div>
           </div>
-
           <div class="grid-top">
             <div class="card">
               <div class="card-label">Gas Concentration — CO₂</div>
@@ -613,7 +474,6 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
                 <span id="gas-alert-text" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--text3);">AWAITING SENSOR DATA</span>
               </div>
             </div>
-
             <div class="card">
               <div class="card-label">Temperature Variance</div>
               <div style="display:flex;justify-content:flex-end;">
@@ -627,18 +487,14 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
               <div class="bar-chart" id="bar-chart"></div>
             </div>
           </div>
-
           <div class="grid-bottom">
             <div class="card" style="position:relative;">
-              <div class="humidity-icon">
-                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
-              </div>
+              <div class="humidity-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
               <div class="card-label">Relative Humidity</div>
               <div class="humidity-value" id="humidity-val">—<span class="pct">%</span></div>
               <div class="humidity-delta" id="humidity-delta" style="color:var(--text3);">Connecting to sensor…</div>
               <div class="humidity-bar-bg"><div class="humidity-bar-fill" id="humidity-bar" style="width:0%"></div></div>
             </div>
-
             <div class="card">
               <div class="card-label">Equipment Health</div>
               <div class="eq-item">
@@ -660,26 +516,21 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
               <div class="diagnostics-link" onclick="showPage('analytics')">System Diagnostics <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
             </div>
           </div>
-
-          <div class="alerts-header">
-            <h2>Recent Alerts</h2>
-            <a onclick="showPage('analytics')">VIEW HISTORY →</a>
-          </div>
+          <div class="alerts-header"><h2>Recent Alerts</h2><a onclick="showPage('analytics')">VIEW HISTORY →</a></div>
           <div class="alert-grid" id="alert-grid">
             <div class="alert-card"><div class="alert-msg" style="color:var(--text3);">Waiting for sensor data…</div></div>
           </div>
         </div>
       </div>
 
-      <!-- ─── INVENTORY PAGE ─── -->
+      <!-- INVENTORY -->
       <div class="page-content" id="page-inventory">
         <div class="content">
           <div class="content-header">
             <div class="header-row">
               <div><h1>Inventory</h1><p>All monitored storage items · Cold Room Alpha</p></div>
               <button class="btn-primary" onclick="showModal('addItemModal')">
-                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                Add Item
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Item
               </button>
             </div>
           </div>
@@ -690,10 +541,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
               <div class="filter-btn" onclick="filterInv(this,'moderate')">Moderate</div>
               <div class="filter-btn" onclick="filterInv(this,'critical')">Critical</div>
             </div>
-            <button class="btn-secondary">
-              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/></svg>
-              Export Report
-            </button>
+            <button class="btn-secondary"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/></svg>Export Report</button>
           </div>
           <div class="card" style="padding:0;overflow:hidden;">
             <table class="inv-table">
@@ -704,7 +552,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
         </div>
       </div>
 
-      <!-- ─── ANALYTICS PAGE ─── -->
+      <!-- ANALYTICS -->
       <div class="page-content" id="page-analytics">
         <div class="content">
           <div class="content-header">
@@ -714,61 +562,29 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
             </div>
           </div>
           <div class="analytics-kpi">
-            <div class="kpi-card" style="animation-delay:.05s">
-              <div class="kpi-label">Avg Temperature</div>
-              <div class="kpi-val safe" id="kpi-temp">—</div>
-              <div class="kpi-trend trend-up" id="kpi-temp-sub">Live from sensor</div>
-              <div class="mini-sparkline" id="spark-temp"></div>
-            </div>
-            <div class="kpi-card" style="animation-delay:.1s">
-              <div class="kpi-label">Gas Level (ppm)</div>
-              <div class="kpi-val warning" id="kpi-gas">—</div>
-              <div class="kpi-trend" id="kpi-gas-sub" style="color:var(--text3)">Live from sensor</div>
-              <div class="mini-sparkline" id="spark-events"></div>
-            </div>
-            <div class="kpi-card" style="animation-delay:.15s">
-              <div class="kpi-label">Freshness Status</div>
-              <div class="kpi-val safe" id="kpi-status">—</div>
-              <div class="kpi-trend trend-up">From classification engine</div>
-              <div class="mini-sparkline" id="spark-uptime"></div>
-            </div>
+            <div class="kpi-card" style="animation-delay:.05s"><div class="kpi-label">Avg Temperature</div><div class="kpi-val safe" id="kpi-temp">—</div><div class="kpi-trend trend-up" id="kpi-temp-sub">Live from sensor</div><div class="mini-sparkline" id="spark-temp"></div></div>
+            <div class="kpi-card" style="animation-delay:.1s"><div class="kpi-label">Gas Level (ppm)</div><div class="kpi-val warning" id="kpi-gas">—</div><div class="kpi-trend" id="kpi-gas-sub" style="color:var(--text3)">Live from sensor</div><div class="mini-sparkline" id="spark-events"></div></div>
+            <div class="kpi-card" style="animation-delay:.15s"><div class="kpi-label">Freshness Status</div><div class="kpi-val safe" id="kpi-status">—</div><div class="kpi-trend trend-up">From classification engine</div><div class="mini-sparkline" id="spark-uptime"></div></div>
           </div>
           <div class="timeline-grid">
-            <div class="chart-card">
-              <div class="chart-header"><div class="chart-title">Temperature History</div></div>
-              <div class="chart-area" id="temp-chart-area"></div>
-            </div>
-            <div class="chart-card">
-              <div class="chart-header"><div class="chart-title">System Events</div><span class="tag-blue eq-tag" style="font-family:'JetBrains Mono',monospace;font-size:9px;">LIVE LOG</span></div>
-              <div class="event-list" id="event-list"></div>
-            </div>
+            <div class="chart-card"><div class="chart-header"><div class="chart-title">Temperature History</div></div><div class="chart-area" id="temp-chart-area"></div></div>
+            <div class="chart-card"><div class="chart-header"><div class="chart-title">System Events</div><span class="tag-blue eq-tag" style="font-family:'JetBrains Mono',monospace;font-size:9px;">LIVE LOG</span></div><div class="event-list" id="event-list"></div></div>
           </div>
-          <div class="chart-card">
-            <div class="chart-header"><div class="chart-title">Gas Concentration Trend (CO₂ ppm)</div></div>
-            <div class="bar-chart" id="gas-chart" style="height:120px;gap:6px;"></div>
-          </div>
+          <div class="chart-card"><div class="chart-header"><div class="chart-title">Gas Concentration Trend (CO₂ ppm)</div></div><div class="bar-chart" id="gas-chart" style="height:120px;gap:6px;"></div></div>
         </div>
       </div>
 
-      <!-- ─── SETTINGS PAGE ─── -->
+      <!-- SETTINGS -->
       <div class="page-content" id="page-settings">
         <div class="content">
           <div class="content-header"><h1>Settings</h1><p>System preferences and configuration</p></div>
           <div class="settings-grid">
             <div>
               <div class="settings-nav">
-                <div class="settings-nav-item active" onclick="showSettingsPanel('profile',this)">
-                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile
-                </div>
-                <div class="settings-nav-item" onclick="showSettingsPanel('alerts',this)">
-                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>Alert Thresholds
-                </div>
-                <div class="settings-nav-item" onclick="showSettingsPanel('sensors',this)">
-                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83"/></svg>Sensor Config
-                </div>
-                <div class="settings-nav-item" onclick="showSettingsPanel('system',this)">
-                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>System
-                </div>
+                <div class="settings-nav-item active" onclick="showSettingsPanel('profile',this)"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</div>
+                <div class="settings-nav-item" onclick="showSettingsPanel('alerts',this)"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>Alert Thresholds</div>
+                <div class="settings-nav-item" onclick="showSettingsPanel('sensors',this)"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83"/></svg>Sensor Config</div>
+                <div class="settings-nav-item" onclick="showSettingsPanel('system',this)"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>System</div>
               </div>
             </div>
             <div>
@@ -776,9 +592,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
                 <div class="settings-section">
                   <h3>Profile</h3><div class="section-desc">Your account and identity</div>
                   <div style="display:flex;align-items:center;gap:20px;margin-bottom:24px;">
-                    <div style="position:relative;">
-                      <div class="profile-avatar-lg" id="settings-avatar">?<div class="avatar-ring"></div></div>
-                    </div>
+                    <div style="position:relative;"><div class="profile-avatar-lg" id="settings-avatar">?<div class="avatar-ring"></div></div></div>
                     <div>
                       <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:20px;" id="settings-name">—</div>
                       <div style="font-size:13px;color:var(--text3);margin-top:2px;" id="settings-email">—</div>
@@ -791,44 +605,24 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
                   </div>
                   <div class="settings-row">
                     <div><div class="settings-row-label">Backend URL</div><div class="settings-row-desc">API server address</div></div>
-                    <input class="settings-input" type="text" id="pref-url" onchange="updateBaseUrl(this.value)" style="width:240px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);"/>
+                    <input class="settings-input" type="text" id="pref-url" onchange="updateBaseUrl(this.value)" style="width:280px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);"/>
                   </div>
                 </div>
               </div>
-
               <div class="settings-panel" id="settings-alerts">
                 <div class="settings-section">
                   <h3>Alert Thresholds</h3><div class="section-desc">Configure when alerts fire</div>
-                  <div class="settings-row">
-                    <div><div class="settings-row-label">Temperature Warning</div><div class="settings-row-desc">°C</div></div>
-                    <input type="number" value="8" class="settings-input" style="width:70px;text-align:center;"/>
-                  </div>
-                  <div class="settings-row">
-                    <div><div class="settings-row-label">Humidity Warning</div><div class="settings-row-desc">%</div></div>
-                    <input type="number" value="85" class="settings-input" style="width:70px;text-align:center;"/>
-                  </div>
-                  <div class="settings-row">
-                    <div><div class="settings-row-label">CO₂ Warning</div><div class="settings-row-desc">ppm</div></div>
-                    <input type="number" value="1000" class="settings-input" style="width:80px;text-align:center;"/>
-                  </div>
-                  <div class="settings-row">
-                    <div><div class="settings-row-label">Email Alerts</div></div>
-                    <div class="toggle on" onclick="this.classList.toggle('on')"></div>
-                  </div>
+                  <div class="settings-row"><div><div class="settings-row-label">Temperature Warning</div><div class="settings-row-desc">°C</div></div><input type="number" value="8" class="settings-input" style="width:70px;text-align:center;"/></div>
+                  <div class="settings-row"><div><div class="settings-row-label">Humidity Warning</div><div class="settings-row-desc">%</div></div><input type="number" value="85" class="settings-input" style="width:70px;text-align:center;"/></div>
+                  <div class="settings-row"><div><div class="settings-row-label">CO₂ Warning</div><div class="settings-row-desc">ppm</div></div><input type="number" value="1000" class="settings-input" style="width:80px;text-align:center;"/></div>
+                  <div class="settings-row"><div><div class="settings-row-label">Email Alerts</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
                 </div>
               </div>
-
               <div class="settings-panel" id="settings-sensors">
                 <div class="settings-section">
                   <h3>Sensor Configuration</h3><div class="section-desc">ESP32 + MQ135 + DHT11 node settings</div>
-                  <div class="settings-row">
-                    <div><div class="settings-row-label">Polling Interval</div></div>
-                    <select class="settings-select" id="polling-interval" onchange="updatePollingInterval(this.value)"><option value="2000">2 seconds</option><option value="5000">5 seconds</option><option value="10000">10 seconds</option></select>
-                  </div>
-                  <div class="settings-row">
-                    <div><div class="settings-row-label">Auto-reconnect</div></div>
-                    <div class="toggle on" onclick="this.classList.toggle('on')"></div>
-                  </div>
+                  <div class="settings-row"><div><div class="settings-row-label">Polling Interval</div></div><select class="settings-select" id="polling-interval" onchange="updatePollingInterval(this.value)"><option value="2000">2 seconds</option><option value="5000">5 seconds</option><option value="10000">10 seconds</option></select></div>
+                  <div class="settings-row"><div><div class="settings-row-label">Auto-reconnect</div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
                   <div style="margin-top:20px;display:flex;gap:10px;">
                     <button class="btn-primary" onclick="testConnection()">Test Connection</button>
                     <button class="btn-secondary" onclick="fetchData()">Manual Refresh</button>
@@ -836,22 +630,12 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
                   <div id="connection-test-result" style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:11px;"></div>
                 </div>
               </div>
-
               <div class="settings-panel" id="settings-system">
                 <div class="settings-section">
                   <h3>System</h3><div class="section-desc">Application info</div>
-                  <div class="settings-row">
-                    <div><div class="settings-row-label">Version</div></div>
-                    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3);">V 2.04.2</span>
-                  </div>
-                  <div class="settings-row">
-                    <div><div class="settings-row-label">Demo Mode</div><div class="settings-row-desc">Shows fake data when backend offline</div></div>
-                    <div id="demo-toggle-disp" class="toggle on" onclick="toggleDemoMode()"></div>
-                  </div>
-                  <div class="settings-row">
-                    <div><div class="settings-row-label" style="color:var(--red);">Sign Out</div></div>
-                    <button onclick="logout()" style="background:var(--red-dim);border:1px solid var(--red);border-radius:8px;padding:7px 14px;font-size:12px;color:var(--red);cursor:pointer;">Sign Out</button>
-                  </div>
+                  <div class="settings-row"><div><div class="settings-row-label">Version</div></div><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3);">V 2.04.2</span></div>
+                  <div class="settings-row"><div><div class="settings-row-label">Demo Mode</div><div class="settings-row-desc">Shows fake data when backend offline</div></div><div id="demo-toggle-disp" class="toggle on" onclick="toggleDemoMode()"></div></div>
+                  <div class="settings-row"><div><div class="settings-row-label" style="color:var(--red);">Sign Out</div></div><button onclick="logout()" style="background:var(--red-dim);border:1px solid var(--red);border-radius:8px;padding:7px 14px;font-size:12px;color:var(--red);cursor:pointer;">Sign Out</button></div>
                 </div>
               </div>
             </div>
@@ -859,8 +643,8 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
         </div>
       </div>
 
-    </div><!-- /main -->
-  </div><!-- /layout -->
+    </div>
+  </div>
 
   <div class="last-updated" id="last-updated">Last updated: —</div>
   <div class="refresh-ring" id="refresh-ring" onclick="fetchData()" data-tip="Refresh now">
@@ -869,9 +653,9 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
       <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
     </svg>
   </div>
-</div><!-- /app -->
+</div>
 
-<!-- ══════════════════════════════════ MODALS ══════════════════════════════════ -->
+<!-- MODALS -->
 <div class="modal-overlay" id="sensorModal" onclick="closeModalOnBg(event,'sensorModal')">
   <div class="modal">
     <div class="modal-header"><div class="modal-title">Add New Sensor</div><div class="modal-close" onclick="closeModal('sensorModal')">✕</div></div>
@@ -902,27 +686,24 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min
 
 <script>
 // ═══════════════════════════════════════════════════════
-//  CONFIG  — Change BASE_URL to your Render URL after deploying
+//  CONFIG — Render backend URL
 // ═══════════════════════════════════════════════════════
-let BASE_URL = localStorage.getItem('fg_base_url') || 'http://localhost:8000';
-// When deployed: BASE_URL = 'https://your-app.onrender.com'
+let BASE_URL = localStorage.getItem('fg_base_url') || 'https://freshguard-api.onrender.com';
 
 let POLLING_INTERVAL_MS = 2000;
-let DEMO_MODE = false; // activated automatically if backend is unreachable
+let DEMO_MODE = false;
 
-// ─── STATE ───
 let token = null;
 let currentUser = { name: 'Agent', email: '' };
 let refreshInterval = null;
 let currentPage = 'dashboard';
-let authMode = 'login'; // 'login' | 'signup'
+let authMode = 'login';
 
-// Rolling history arrays (last 30 readings)
 let tempHistory = [];
 let gasHistory  = [];
 
 // ═══════════════════════════════════════════════════════
-//  AUTH — Login / Signup
+//  AUTH
 // ═══════════════════════════════════════════════════════
 function switchAuthTab(mode) {
   authMode = mode;
@@ -951,28 +732,27 @@ async function doAuth() {
   document.getElementById('btn-label').textContent = authMode === 'login' ? 'Authorizing…' : 'Creating account…';
 
   const endpoint = authMode === 'login' ? '/login' : '/signup';
+
   try {
     const res = await fetch(`${BASE_URL}${endpoint}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),
     });
+
     const data = await res.json();
 
     if (!res.ok) {
-      // Backend returned an error
       showError(data.detail || 'Authentication failed.');
       btn.disabled = false;
       document.getElementById('btn-label').textContent = authMode === 'login' ? 'Authorize Access' : 'Create Account';
       return;
     }
 
-    // Success — store token
     token = data.access_token;
     localStorage.setItem('fg_token', token);
     localStorage.setItem('fg_user', username);
     DEMO_MODE = false;
-
     currentUser.name  = formatName(username);
     currentUser.email = username;
 
@@ -983,13 +763,13 @@ async function doAuth() {
     enterDashboard();
 
   } catch (err) {
-    // Network error — fall back to demo mode
     console.warn('Backend unreachable, entering demo mode:', err.message);
     DEMO_MODE = true;
     token = 'demo';
     currentUser.name  = formatName(username);
     currentUser.email = username;
     localStorage.setItem('fg_user', username);
+    document.getElementById('demo-banner').style.display = 'block';
     enterDashboard();
   }
 }
@@ -997,30 +777,24 @@ async function doAuth() {
 function formatName(input) {
   const emailMatch = input.match(/^([^@]+)@/);
   const raw = emailMatch ? emailMatch[1] : input;
-  return raw.split(/[\.\-\_\s]+/)
-    .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
-    .join(' ');
+  return raw.split(/[\.\-\_\s]+/).map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
 }
 
 function enterDashboard() {
   updateUserUI();
   document.getElementById('login-page').style.display = 'none';
   document.getElementById('app').style.display = 'block';
-
-  if (DEMO_MODE) {
-    document.getElementById('demo-badge-topbar').style.display = 'block';
-  }
-
+  if (DEMO_MODE) document.getElementById('demo-badge-topbar').style.display = 'block';
   startAutoRefresh();
   renderInventory('all');
   renderAnalytics();
 }
 
 function updateUserUI() {
-  const name     = currentUser.name;
+  const name = currentUser.name;
   const initials = name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
-  document.getElementById('sidebar-name').textContent      = name;
-  document.getElementById('sidebar-avatar').textContent    = initials;
+  document.getElementById('sidebar-name').textContent     = name;
+  document.getElementById('sidebar-avatar').textContent   = initials;
   document.getElementById('settings-avatar').textContent  = initials;
   document.getElementById('settings-name').textContent    = name;
   document.getElementById('settings-email').textContent   = currentUser.email;
@@ -1038,13 +812,13 @@ function updateName(val) {
 
 function updateBaseUrl(val) {
   if (!val.trim()) return;
-  BASE_URL = val.trim().replace(/\/$/, ''); // strip trailing slash
+  BASE_URL = val.trim().replace(/\/$/, '');
   localStorage.setItem('fg_base_url', BASE_URL);
 }
 
 function updatePollingInterval(val) {
   POLLING_INTERVAL_MS = parseInt(val, 10);
-  startAutoRefresh(); // restart with new interval
+  startAutoRefresh();
 }
 
 function logout() {
@@ -1060,18 +834,18 @@ function logout() {
   document.getElementById('btn-label').textContent = 'Authorize Access';
   document.getElementById('login-btn').disabled = false;
   document.getElementById('demo-badge-topbar').style.display = 'none';
+  document.getElementById('demo-banner').style.display = 'none';
   switchAuthTab('login');
 }
 
 // ═══════════════════════════════════════════════════════
-//  DATA FETCHING — Real sensor data from backend
+//  DATA FETCHING
 // ═══════════════════════════════════════════════════════
 async function fetchData() {
   const ring = document.getElementById('refresh-ring');
   ring.classList.add('spinning');
 
   if (DEMO_MODE) {
-    // Simulate realistic sensor values for demo
     const demoData = {
       temperature : +(Math.random() * 3 + 3).toFixed(1),
       humidity    : +(Math.random() * 20 + 55).toFixed(1),
@@ -1090,37 +864,23 @@ async function fetchData() {
       headers: { 'Authorization': `Bearer ${token}` },
     });
 
-    if (res.status === 401) {
-      // Token expired — force re-login
-      logout();
-      showError('Session expired. Please sign in again.');
-      return;
-    }
+    if (res.status === 401) { logout(); showError('Session expired. Please sign in again.'); return; }
 
     if (!res.ok) {
-      if (res.status === 404) {
-        // 404 = no sensor data yet — backend is alive, ESP32 hasn't sent yet
-        setStatusWaiting();
-        return;
-      }
+      if (res.status === 404) { setStatusWaiting(); ring.classList.remove('spinning'); return; }
       throw new Error(`HTTP ${res.status}`);
     }
 
     const json = await res.json();
-    // Backend returns { user_context: "...", data: { temperature, humidity, gas, status, timestamp } }
     const data = json.data;
     updateDashboard(data);
 
-    // Mark ESP32 as online
     document.getElementById('esp32-status-tag').textContent = 'ONLINE';
     document.getElementById('esp32-status-tag').className = 'eq-tag tag-ok';
-
-    document.getElementById('last-updated').textContent =
-      'Last updated: ' + new Date().toLocaleTimeString();
+    document.getElementById('last-updated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
 
   } catch (err) {
     console.warn('Fetch failed:', err.message);
-    // Backend is down — silently switch to demo mode
     DEMO_MODE = true;
     document.getElementById('demo-badge-topbar').style.display = 'block';
     document.getElementById('esp32-status-tag').textContent = 'OFFLINE';
@@ -1149,33 +909,25 @@ function startAutoRefresh() {
 // ═══════════════════════════════════════════════════════
 function updateDashboard(data) {
   const { temperature, humidity, gas, status } = data;
-
-  // Status pill
   const colors = { FRESH: 'var(--green)', MODERATE: 'var(--yellow)', 'SPOILED!': 'var(--red)' };
   const color  = colors[status] || 'var(--text2)';
-  document.getElementById('status-dot').style.cssText  = `background:${color};box-shadow:0 0 6px ${color};`;
-  document.getElementById('status-text').style.color   = color;
-  document.getElementById('status-text').textContent   = status || '—';
+  document.getElementById('status-dot').style.cssText = `background:${color};box-shadow:0 0 6px ${color};`;
+  document.getElementById('status-text').style.color  = color;
+  document.getElementById('status-text').textContent  = status || '—';
 
-  // Stat cards
   const tempColor = temperature > 8 ? 'var(--red)' : temperature > 5 ? 'var(--yellow)' : 'var(--green)';
   document.getElementById('stat-temp').textContent = temperature + '°C';
   document.getElementById('stat-temp').style.color = tempColor;
   document.getElementById('stat-hum').textContent  = humidity + '%';
   document.getElementById('stat-gas').textContent  = gas;
-
-  // Big temperature display
-  document.getElementById('temp-val').innerHTML = `${temperature}<span>°C</span>`;
-
-  // Humidity
+  document.getElementById('temp-val').innerHTML    = `${temperature}<span>°C</span>`;
   document.getElementById('humidity-val').innerHTML = `${humidity}<span class="pct">%</span>`;
   document.getElementById('humidity-bar').style.width = Math.min(humidity, 100) + '%';
+
   const humMsg = humidity > 85 ? '⚠ High humidity' : humidity > 70 ? 'Moderate range' : '✓ Optimal range';
   document.getElementById('humidity-delta').textContent = humMsg;
-  document.getElementById('humidity-delta').style.color =
-    humidity > 85 ? 'var(--red)' : humidity > 70 ? 'var(--yellow)' : 'var(--green)';
+  document.getElementById('humidity-delta').style.color = humidity > 85 ? 'var(--red)' : humidity > 70 ? 'var(--yellow)' : 'var(--green)';
 
-  // Gas gauge
   const maxGas = 2000;
   const pct    = Math.min(gas / maxGas, 1);
   const circumference = 408;
@@ -1183,12 +935,9 @@ function updateDashboard(data) {
   const gColor = pct < 0.4 ? 'var(--green)' : pct < 0.7 ? 'var(--yellow)' : 'var(--red)';
   document.getElementById('gauge-fill').style.stroke = gColor;
   document.getElementById('gas-pct').textContent = gas;
-  document.getElementById('gas-alert-text').textContent =
-    pct < 0.4 ? '✓ GAS LEVELS NORMAL' : pct < 0.7 ? '⚠ ELEVATED GAS — MONITOR' : '⛔ CRITICAL GAS LEVEL';
-  document.getElementById('gas-alert-text').style.color =
-    pct < 0.4 ? 'var(--green)' : pct < 0.7 ? 'var(--yellow)' : 'var(--red)';
+  document.getElementById('gas-alert-text').textContent = pct < 0.4 ? '✓ GAS LEVELS NORMAL' : pct < 0.7 ? '⚠ ELEVATED GAS — MONITOR' : '⛔ CRITICAL GAS LEVEL';
+  document.getElementById('gas-alert-text').style.color = pct < 0.4 ? 'var(--green)' : pct < 0.7 ? 'var(--yellow)' : 'var(--red)';
 
-  // Rolling history (max 30 points)
   tempHistory.push(+temperature);
   gasHistory.push(+gas);
   if (tempHistory.length > 30) tempHistory.shift();
@@ -1197,13 +946,12 @@ function updateDashboard(data) {
   buildBars();
   updateAlertGrid(data);
 
-  // Analytics KPIs (update if visible)
   const kpiTemp   = document.getElementById('kpi-temp');
   const kpiGas    = document.getElementById('kpi-gas');
   const kpiStatus = document.getElementById('kpi-status');
   if (kpiTemp)   { kpiTemp.textContent   = temperature + '°C'; kpiTemp.style.color = tempColor; }
-  if (kpiGas)    { kpiGas.textContent    = gas + ' ppm'; kpiGas.style.color = gColor; }
-  if (kpiStatus) { kpiStatus.textContent = status; kpiStatus.style.color = color; }
+  if (kpiGas)    { kpiGas.textContent    = gas + ' ppm';       kpiGas.style.color  = gColor; }
+  if (kpiStatus) { kpiStatus.textContent = status;             kpiStatus.style.color = color; }
 }
 
 function buildBars() {
@@ -1211,36 +959,26 @@ function buildBars() {
   if (!container || tempHistory.length === 0) return;
   const max = Math.max(...tempHistory, 1);
   container.innerHTML = tempHistory.map((v, i) => {
-    const h      = Math.round((v / max) * 74) + 4;
+    const h = Math.round((v / max) * 74) + 4;
     const isLast = i === tempHistory.length - 1;
     const isHigh = v > 8;
-    const cls    = isHigh ? 'high' : isLast ? 'active' : '';
+    const cls = isHigh ? 'high' : isLast ? 'active' : '';
     return `<div class="bar ${cls}" style="height:${h}px;animation-delay:${i * 0.02}s;" title="${v}°C"></div>`;
   }).join('');
 }
 
 function updateAlertGrid(data) {
   const now = new Date().toLocaleTimeString();
-  const { temperature, humidity, gas, status } = data;
+  const { temperature, humidity, gas } = data;
   const alerts = [
-    {
-      sev: temperature > 8 ? 'red' : temperature > 5 ? 'yellow' : 'green',
-      msg: `Temperature: ${temperature}°C — ${temperature > 8 ? 'ABOVE SAFE LIMIT' : temperature > 5 ? 'approaching limit' : 'optimal'}`,
-    },
-    {
-      sev: humidity > 85 ? 'red' : humidity > 70 ? 'yellow' : 'blue',
-      msg: `Humidity: ${humidity}% — ${humidity > 85 ? 'HIGH' : humidity > 70 ? 'moderate' : 'normal'}`,
-    },
-    {
-      sev: gas > 1300 ? 'red' : gas > 700 ? 'yellow' : 'green',
-      msg: `CO₂: ${gas} ppm — ${gas > 1300 ? 'CRITICAL' : gas > 700 ? 'elevated' : 'normal'}`,
-    },
+    { sev: temperature > 8 ? 'red' : temperature > 5 ? 'yellow' : 'green', msg: `Temperature: ${temperature}°C — ${temperature > 8 ? 'ABOVE SAFE LIMIT' : temperature > 5 ? 'approaching limit' : 'optimal'}` },
+    { sev: humidity > 85 ? 'red' : humidity > 70 ? 'yellow' : 'blue', msg: `Humidity: ${humidity}% — ${humidity > 85 ? 'HIGH' : humidity > 70 ? 'moderate' : 'normal'}` },
+    { sev: gas > 1300 ? 'red' : gas > 700 ? 'yellow' : 'green', msg: `CO₂: ${gas} ppm — ${gas > 1300 ? 'CRITICAL' : gas > 700 ? 'elevated' : 'normal'}` },
   ];
   document.getElementById('alert-grid').innerHTML = alerts.map(a => `
     <div class="alert-card">
       <div class="alert-time" style="display:flex;align-items:center;gap:6px;">
-        <span style="width:6px;height:6px;border-radius:50%;background:var(--${a.sev});display:inline-block;box-shadow:0 0 6px var(--${a.sev});"></span>
-        ${now}
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--${a.sev});display:inline-block;box-shadow:0 0 6px var(--${a.sev});"></span>${now}
       </div>
       <div class="alert-msg" style="margin-top:6px;">${a.msg}</div>
     </div>`).join('');
@@ -1313,7 +1051,6 @@ const systemEvents = [
 ];
 
 function renderAnalytics() {
-  // Temperature line chart using current history
   const chartEl = document.getElementById('temp-chart-area');
   if (chartEl) {
     const pts = tempHistory.length >= 2 ? tempHistory : Array.from({length:24}, () => +(Math.random()*5+2).toFixed(1));
@@ -1327,37 +1064,28 @@ function renderAnalytics() {
     }).join(' ');
     const lastX = (pts.length - 1) / (pts.length - 1) * (w - 40) + 20;
     chartEl.innerHTML = `<svg width="100%" height="200" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
-      <defs><linearGradient id="tg" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#3dffa0" stop-opacity="0.2"/>
-        <stop offset="100%" stop-color="#3dffa0" stop-opacity="0"/>
-      </linearGradient></defs>
+      <defs><linearGradient id="tg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3dffa0" stop-opacity="0.2"/><stop offset="100%" stop-color="#3dffa0" stop-opacity="0"/></linearGradient></defs>
       <polygon points="${points} ${lastX},${h} 20,${h}" fill="url(#tg)"/>
       <polyline points="${points}" fill="none" stroke="#3dffa0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>`;
   }
-
-  // Sparklines
   ['spark-temp','spark-events','spark-uptime'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
     const vals = Array.from({length:14}, () => Math.random());
     const max2 = Math.max(...vals);
     el.innerHTML = vals.map((v, i) => {
-      const hh = Math.max(4, Math.round((v / max2) * 56));
+      const hh  = Math.max(4, Math.round((v / max2) * 56));
       const col = id === 'spark-events' ? (v > 0.7 ? 'var(--red)' : v > 0.4 ? 'var(--yellow)' : 'var(--green)') : 'var(--green)';
       return `<div class="spark-bar" style="height:${hh}px;background:${col};opacity:${0.4+v*0.6};animation-delay:${i*0.04}s;"></div>`;
     }).join('');
   });
-
-  // Events
   const evEl = document.getElementById('event-list');
   if (evEl) evEl.innerHTML = systemEvents.map(e => `
     <div class="event-item">
       <div class="event-dot" style="background:${e.color};box-shadow:0 0 6px ${e.color};"></div>
       <div><div class="event-time">${e.time}</div><div class="event-desc">${e.desc}</div></div>
     </div>`).join('');
-
-  // Gas chart
   const gasEl = document.getElementById('gas-chart');
   if (gasEl) {
     const pts = gasHistory.length >= 2 ? gasHistory : Array.from({length:14}, () => Math.floor(Math.random()*400+300));
@@ -1385,9 +1113,6 @@ function showPage(page) {
   if (page === 'analytics') renderAnalytics();
 }
 
-// ═══════════════════════════════════════════════════════
-//  SETTINGS
-// ═══════════════════════════════════════════════════════
 function showSettingsPanel(panel, btn) {
   document.querySelectorAll('.settings-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.settings-nav-item').forEach(b => b.classList.remove('active'));
@@ -1406,7 +1131,7 @@ async function testConnection() {
   el.style.color = 'var(--text3)';
   el.textContent = 'Testing…';
   try {
-    const res = await fetch(`${BASE_URL}/`, { signal: AbortSignal.timeout(4000) });
+    const res = await fetch(`${BASE_URL}/`, { signal: AbortSignal.timeout(5000) });
     const d   = await res.json();
     el.style.color = 'var(--green)';
     el.textContent = `✓ Connected — ${d.system || 'FreshGuard'} v${d.version || '?'}`;
@@ -1416,38 +1141,30 @@ async function testConnection() {
   }
 }
 
-// ═══════════════════════════════════════════════════════
-//  MISC UI
-// ═══════════════════════════════════════════════════════
 function showModal(id) { document.getElementById(id).classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 function closeModalOnBg(e, id) { if (e.target === e.currentTarget) closeModal(id); }
-
 function toggleNotif() { document.getElementById('notif-dropdown').classList.toggle('open'); }
 function clearNotifs(e) {
   e.stopPropagation();
   document.getElementById('notif-list').innerHTML = '<div style="padding:20px;text-align:center;font-size:13px;color:var(--text3);">No new alerts</div>';
   document.getElementById('notif-dot').style.display = 'none';
 }
-
 document.addEventListener('click', e => {
   const dd = document.getElementById('notif-dropdown');
   if (dd && !e.target.closest('.icon-btn')) dd.classList.remove('open');
 });
-
 function selectTab(el, label) {
   el.closest('.time-tabs').querySelectorAll('.time-tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
-  buildBars(); // uses real history for 'live'; same array for other tabs (historical fetch can be added)
+  buildBars();
 }
-
 function handleSearch(val) {
   const l = val.toLowerCase();
   if (['inventory','stock','items'].some(k => l.includes(k))) showPage('inventory');
   else if (['analytics','chart','graph','history'].some(k => l.includes(k))) showPage('analytics');
   else if (['settings','config','profile'].some(k => l.includes(k))) showPage('settings');
 }
-
 function showError(msg) {
   const el = document.getElementById('error-msg');
   el.textContent = msg; el.style.display = 'block';
@@ -1464,23 +1181,19 @@ function hideMessages() {
 }
 
 // ═══════════════════════════════════════════════════════
-//  INIT — restore session from localStorage
+//  INIT
 // ═══════════════════════════════════════════════════════
 window.addEventListener('DOMContentLoaded', () => {
   const savedToken = localStorage.getItem('fg_token');
   const savedUser  = localStorage.getItem('fg_user');
   const savedUrl   = localStorage.getItem('fg_base_url');
   if (savedUrl) BASE_URL = savedUrl;
-
   if (savedToken && savedUser) {
-    // Try to restore session silently
     token = savedToken;
     currentUser.name  = formatName(savedUser);
     currentUser.email = savedUser;
     enterDashboard();
   }
-
-  // Enter key support
   ['login-password','login-confirm','login-username'].forEach(id => {
     document.getElementById(id)?.addEventListener('keydown', e => {
       if (e.key === 'Enter') doAuth();
