@@ -10,14 +10,16 @@ Render deployment:
     Start command: uvicorn main:app --host 0.0.0.0 --port $PORT
 """
 
+
 from fastapi import FastAPI, HTTPException, Depends, status, Request
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, validator
 from datetime import datetime, timedelta
 from typing import Optional
 import jwt
 import hashlib
+import math
 import sqlite3
 import logging
 import os
@@ -105,16 +107,14 @@ class UserAuth(BaseModel):
     username: str
     password: str
 
-    @field_validator("username")
-    @classmethod
+    @validator("username")
     def username_not_empty(cls, v: str) -> str:
         v = v.strip()
         if not v:
             raise ValueError("Username cannot be empty.")
         return v.lower()
 
-    @field_validator("password")
-    @classmethod
+    @validator("password")
     def password_length(cls, v: str) -> str:
         if len(v) < 6:
             raise ValueError("Access key must be at least 6 characters.")
@@ -134,10 +134,8 @@ class SensorData(BaseModel):
     temperature: float
     humidity: float
 
-    @field_validator("gas", "temperature", "humidity")
-    @classmethod
+    @validator("gas", "temperature", "humidity")
     def finite_number(cls, v: float) -> float:
-        import math
         if math.isnan(v) or math.isinf(v):
             raise ValueError("Sensor value must be a finite number.")
         return round(v, 2)
