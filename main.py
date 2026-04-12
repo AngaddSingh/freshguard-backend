@@ -164,9 +164,9 @@ def get_current_user(
 
 
 def classify_freshness(gas: float, temp: float, hum: float) -> str:
-    if gas < 1300 and hum < 65 and temp < 8:
+    if gas < 1000 and hum < 70 and temp < 30:
         return "FRESH"
-    elif gas < 1800 and hum < 82 and temp < 15:
+    elif gas < 1500 and hum < 85 and temp < 38:
         return "MODERATE"
     else:
         return "SPOILED!"
