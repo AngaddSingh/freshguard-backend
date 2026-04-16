@@ -341,7 +341,7 @@ if __name__ == "__main__":
     print("=" * 55 + "\n")
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
 
-    from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse
 import csv
 from io import StringIO
 
@@ -349,7 +349,7 @@ from io import StringIO
 async def download_csv():
     with get_db() as conn:
         rows = conn.execute(
-            "SELECT * FROM sensor_readings ORDER BY id DESC"
+            "SELECT gas, temperature, humidity, status, timestamp FROM sensor_readings ORDER BY id DESC"
         ).fetchall()
 
     output = StringIO()
@@ -361,11 +361,11 @@ async def download_csv():
     # data
     for row in rows:
         writer.writerow([
-            row["gas"],
-            row["temperature"],
-            row["humidity"],
-            row["status"],
-            row["timestamp"]
+            row[0],  # gas
+            row[1],  # temperature
+            row[2],  # humidity
+            row[3],  # status
+            row[4]   # timestamp
         ])
 
     output.seek(0)
