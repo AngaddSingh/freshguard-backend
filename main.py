@@ -346,7 +346,7 @@ import csv
 from io import StringIO
 
 @app.get("/download-csv")
-async def download_csv(current_user: str = Depends(get_current_user)):
+async def download_csv():
     with get_db() as conn:
         rows = conn.execute(
             "SELECT * FROM sensor_readings ORDER BY id DESC"
