@@ -861,7 +861,9 @@ async function fetchData() {
 
   try {
     const res = await fetch(`${BASE_URL}/status`, {
-      headers: { 'Authorization': `Bearer ${token}` },
+      headers: { 
+  'Authorization': `Bearer ${localStorage.getItem('fg_token')}` 
+},
     });
 
     if (res.status === 401) { logout(); showError('Session expired. Please sign in again.'); return; }

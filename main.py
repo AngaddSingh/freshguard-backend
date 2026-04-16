@@ -340,3 +340,38 @@ if __name__ == "__main__":
     print("  Docs:    http://localhost:8000/docs")
     print("=" * 55 + "\n")
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
+    from fastapi.responses import StreamingResponse
+import csv
+from io import StringIO
+
+@app.get("/download-csv")
+async def download_csv(current_user: str = Depends(get_current_user)):
+    with get_db() as conn:
+        rows = conn.execute(
+            "SELECT * FROM sensor_readings ORDER BY id DESC"
+        ).fetchall()
+
+    output = StringIO()
+    writer = csv.writer(output)
+
+    # header
+    writer.writerow(["gas", "temperature", "humidity", "status", "timestamp"])
+
+    # data
+    for row in rows:
+        writer.writerow([
+            row["gas"],
+            row["temperature"],
+            row["humidity"],
+            row["status"],
+            row["timestamp"]
+        ])
+
+    output.seek(0)
+
+    return StreamingResponse(
+        output,
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=data.csv"}
+    )
